@@ -5,10 +5,8 @@
   *
   * @param {Number}  min   минимальное число
   * @param {Number}  max  максимальное число
-  * @param {Number} Math.random()   Псевдослучайное число с плавающей запятой от 0 (включительно) до 1 (не считая).
   */
 
-  // Возвращает случайное число в заданном интервале. Возвращаемое значение не менее (и может быть равно) min и не более (и не равно) max.
   let getRandomArbitrary = function (min, max) {
     return Math.random() * (max - min) + min;
   }
