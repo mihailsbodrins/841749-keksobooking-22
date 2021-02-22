@@ -6,7 +6,7 @@
   * @return {Number}  max  максимальное число
   */
 
-  let getRandomArbitrary = function (min, max) {
+  let getRandomInteger = function (min, max) {
     return Math.random() * (max - min) + min;
   }
 
@@ -45,5 +45,5 @@
   }
 
   // заданный интервал [0, 102) округление до десятых
-  return Math.round10(getRandomArbitrary(0, 102), -1);
+  return Math.round10(getRandomInteger(0, 102), -1);
 })();
