@@ -3,8 +3,8 @@
   /**
   * Получения случайного числа в задонном интервале
   *
-  * @param {Number}  min   минимальное число
-  * @param {Number}  max  максимальное число
+  * @return {Number}  min   минимальное число
+  * @return {Number}  max  максимальное число
   */
 
   let getRandomArbitrary = function (min, max) {
