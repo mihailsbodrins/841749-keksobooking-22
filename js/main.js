@@ -1,55 +1,13 @@
-// Замыкание
-(function() {
-  /**
-  * Получения случайного числа в задонном интервале
-  *
-  * @param {Number}  min   минимальное число
-  * @param {Number}  max  максимальное число
-  * @param {Number} Math.random()   Псевдослучайное число с плавающей запятой от 0 (включительно) до 1 (не считая).
-  */
-
-  // Возвращает случайное число в заданном интервале. Возвращаемое значение не менее (и может быть равно) min и не более (и не равно) max.
-  const getRandomFloat = function (min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  /**
-  * Корректировка округления десятичных дробей.
-  *
-  * @param {String}  type  Тип корректировки.
-  * @param {Number}  value Число.
-  * @param {Integer} exp   Показатель степени (десятичный логарифм основания корректировки).
-  * @returns {Number} Скорректированное значение.
-  */
-  let decimalAdjust = function (type, value, exp) {
-    // Если степень не определена, либо равна нулю...
-    if (typeof exp === 'undefined' || +exp === 0) {
-      return Math[type](value);
-    }
-    value = +value;
-    exp = +exp;
-    // Если значение не является числом, либо степень не является целым числом...
-    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-      return NaN;
-    }
-    // Сдвиг разрядов
-    value = value.toString().split('e');
-    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
-    // Обратный сдвиг
-    value = value.toString().split('e');
-    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-  }
-
-  // Десятичное округление к ближайшему
-  if (!Math.round10) {
-    Math.round10 = function(value, exp) {
-      return decimalAdjust('round', value, exp);
-    };
-  }
-
-  // заданный интервал [0, 102) округление до десятых
-  return Math.round10(getRandomFloat(0, 102), -1);
-})();
+/**
+ * Получение случайного числа в задонном интервале
+ *
+ * @param {Number} min -  минимальное число
+ * @param {Number} max - максимальное число
+ * @return {Number} - Псевдослучайное число с плавающей запятой от 0 (включительно) до 1 (не считая).
+ */
+const getRandomFloat = (min, max) => {
+  return Math.random() * (max - min) + min;
+}
 
 const TYPES = [
   'palace',
@@ -79,7 +37,11 @@ const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
 ];
 
-
+/**
+ * Функция для генерации объекта недвижимости
+ *
+ * @return {Object} - объект недвижимости
+ */
 const madeAd = () => {
   const location = {
     x: getRandomFloat(35.65000, 35.70000, 5),
@@ -107,33 +69,33 @@ const madeAd = () => {
 }
 
 /**
- * получение случайного элемента из массива
+ * Получение случайного элемента из массива
+ *
  * @param {Array} arr — исходный массив
+ * @param {Number} min -  минимальное число
+ * @param {Number} max - максимальное число
+ * @param {Number} count - количество вариантов
  * @return {*} — случайный элемент
  */
-// const getRandomElementFromArray = (arr) => {
-//   const randomIndex = getRandom(0, arr.length);
-//   return arr[randomIndex];
-// };
+const getRandomElementFromArray = (arr) => {
+  const randomIndex = getRandom(0, arr.length);
+  return arr[randomIndex];
+};
 const getRandom = (min, max) => {
   // получить случайное число от (min-0.5) до (max+0.5)
   const rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 };
-const getRandomFloat = (min, max) => {
-  return (Math.random() * (max - min) + min).toFixed(5);
-};
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+const shuffle = (arr) => {
+  for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 }
-const getRandomArrayFromAnother = (array) => {
-  shuffle(array)
-  return array.splice(1, getRandom(1, array.length));
+const getRandomArrayFromAnother = (arr) => {
+  shuffle(arr)
+  return arr.splice(1, getRandom(1, arr.length));
 };
-
 const makeAds = (count) => {
   let ads = [];
   for (let i = 0; i < count; i++) {
