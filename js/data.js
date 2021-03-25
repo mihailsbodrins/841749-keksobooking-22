@@ -1,5 +1,6 @@
-import {getRandomFloat} from './util.js';
-import {getRandomElementFromArray} from './util.js';
+import {getRandomFloat} from '.js/util.js';
+import {getRandom} from '.js/util.js';
+import {getRandomArrayFromAnother} from '.js/util.js';
 
 const TYPES = [
   'palace',
@@ -34,7 +35,7 @@ const PHOTOS = [
  *
  * @return {Object} - объект недвижимости
  */
- const madeAd = () => {
+const madeAd = () => {
   const location = {
     x: getRandomFloat(35.65000, 35.70000, 5),
     y: getRandomFloat(139.70000, 139.80000, 5),
@@ -66,7 +67,7 @@ const PHOTOS = [
  * @param {Number} count — число вариантов
  * @return {*} — перечисляет количество
  */
- const makeAds = (count) => {
+const makeAds = (count) => {
   let ads = [];
   for (let i = 0; i < count; i++) {
     ads[i] = madeAd();
